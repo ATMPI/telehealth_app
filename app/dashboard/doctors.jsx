@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Platform, StatusBar} from 'react-native'
 import React from 'react'
 import ThemedView from '../../components/ThemedView'
 import ThemedCard from '../../components/ThemedCard'
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   contentWrapper: {
-    marginTop: '15%',
+    marginTop: '20%',
   },
   row: {
     flexDirection: 'row',

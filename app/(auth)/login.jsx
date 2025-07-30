@@ -32,9 +32,11 @@ const Login = () => {
                 placeholder="Username" 
                 style={{borderWidth: 1, padding: 10, margin: 10}} />
             <ThemedTextInput placeholder="Password" secureTextEntry={true} style={{borderWidth: 1, padding: 10, margin: 10}} />
-            <Link href="/dashboard/doctors" style={styles.button}>
-                <Text style={{color: 'white'}}>Login</Text>
-            </Link>
+            <ThemedButton style={{}}>
+                <Link href="/dashboard/doctors" style={styles.button}>
+                    <Text style={{color: 'white'}}>Login</Text>
+                </Link>
+            </ThemedButton>
             <View style={styles.forgotContainer}>
 
                 <ThemedText>
@@ -74,11 +76,6 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
     },
     button:{
-        backgroundColor: '#2a6f97',
-        padding: 10,
-        borderRadius: 5,
-        marginTop: 20,
-        minWidth: '40%',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',

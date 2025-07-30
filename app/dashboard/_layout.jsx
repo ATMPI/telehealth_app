@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, StatusBar,TextInput, Platform } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
 import { Tabs } from 'expo-router'
 import { useColorScheme } from 'react-native'
 import { Colors } from '../../constants/Colors'
 import { Ionicons } from '@expo/vector-icons'
+import ThemedView from '../../components/ThemedView'
+
 
 const _DashLayout = () => {
   const colorScheme = useColorScheme();
@@ -63,40 +65,78 @@ const _DashLayout = () => {
       />
       
       </Tabs>
-      <View style={[styles.headerOptions, styles.row]}>
-        <Link href="/" style={styles.optionItem}>
-          <Ionicons name='notifications-outline' size={30} color={theme.iconColor} />
-        </Link>
-        <Link href="/" style={styles.optionItem}>
-          <Ionicons name='log-out-outline' size={30} color={theme.iconColor} />
-        </Link>
-      </View>
+      <ThemedView style={styles.headerOptions}>
+
+        <View style={[styles.row]}>
+          <View style={styles.filter}>
+            <View style={styles.filterGroup}>
+              <TextInput placeholder='Search' style={styles.filterInput}></TextInput>
+              <Ionicons name='filter-outline' size={35} color={theme.iconColor} />
+            </View>
+          </View>
+          <View style={styles.optionGroup}>
+
+            <Link href="/" style={styles.optionItem}>
+              <Ionicons name='notifications-outline' size={35} color={theme.iconColor} />
+            </Link>
+            <Link href="/" style={styles.optionItem}>
+              <Ionicons name='log-out-outline' size={34} color={theme.iconColor} />
+            </Link>
+          </View>
+        </View>
+
+      </ThemedView>
     </>
   )
 }
 
 export default _DashLayout
 const styles = StyleSheet.create({
-
-  headerOptions:{
+  headerOptions: {
     position: 'absolute',
-    top: "5%",
-    right: 10,
-    borderRadius: 20,
-    padding: 10,
-  }
-  ,row:{
+    top: (Platform.OS === 'android' ? StatusBar.currentHeight : 0) + 10,
+    width: '100%',
+    backgroundColor: '#fff',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    zIndex: 10,
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+  },
+  row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    
+    gap: 10,
   },
   optionItem: {
     marginHorizontal: 5,
-
   },
-
-
-})
+  filterGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    backgroundColor: '#f0f0f0',
+    flex: 1,
+    height: 35,
+    width: '70%',
+  },
+  filterInput: {
+    flex: 1,
+    fontSize: 16,
+    paddingHorizontal: 15,
+  },
+  filter: {
+    flex: 1,
+    marginRight: 10,
+  },
+  optionGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+});

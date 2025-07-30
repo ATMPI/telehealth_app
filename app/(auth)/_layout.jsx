@@ -19,13 +19,18 @@ const AuthLayout = () => {
     }}>
         <Tabs.Screen 
             name='login' 
-            options={{title:'Login', tabBarIcon: ({focused}) => (
-                <Ionicons 
-                    size={28} 
-                    name={focused ? "log-in" : "log-in-outline"} 
-                    color={focused ? theme.iconColorFocused : theme.iconColor}
-                />
-            )}}
+            badgeCount={2}
+            options={{
+                title:'Login', 
+                tabBarIcon: ({focused}) => (
+                    <Ionicons 
+                        size={28} 
+                        name={focused ? "log-in" : "log-in-outline"} 
+                        color={focused ? theme.iconColorFocused : theme.iconColor}
+                    />
+                ),
+               // Example badge count
+            }}
            
         />
         <Tabs.Screen 

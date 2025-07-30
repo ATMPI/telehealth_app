@@ -1,4 +1,4 @@
-import { StyleSheet,Pressable } from 'react-native'
+import { StyleSheet,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Colors } from '../constants/Colors'
 
@@ -6,7 +6,7 @@ import { Colors } from '../constants/Colors'
 const ThemedButton = ({style, ...props}) => {
     
   return (
-    <Pressable
+    <TouchableOpacity
         style={[({ pressed }) => [styles.btn, pressed && styles.pressed], styles.btn , {backgroundColor: Colors.primary},style]}
         {...props}
     />
