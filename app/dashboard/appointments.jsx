@@ -4,12 +4,14 @@ import ThemedView from '../../components/ThemedView'
 
 const Appointments = () => {
   return (
-    <ThemedView safe={true}>
+    <ThemedView safe={true} style={{flex:1}}>
     <Text>Appointments</Text>
-  </ThemedView>
+    </ThemedView>
   )
 }
 
 export default Appointments
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+})

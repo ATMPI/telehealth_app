@@ -6,7 +6,7 @@ const ThemedText = ({style, link= false, ...props}) => {
     const colorScheme = useColorScheme()
     const theme = Colors[colorScheme] ?? Colors.light // Fallback to light theme if colorScheme is undefined
   return (
-    <Text style={[{ color: (link) ? theme.link : theme.text, fontSize: 16, fontFamily: 'Arial' },style]}
+    <Text style={[{ color: (link) ? theme.link : theme.text, fontSize: 16, fontFamily: 'Poppins Regular'},style]}
     {...props}
     />
 

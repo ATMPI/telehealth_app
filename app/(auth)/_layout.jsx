@@ -29,7 +29,7 @@ const AuthLayout = () => {
                         color={focused ? theme.iconColorFocused : theme.iconColor}
                     />
                 ),
-               // Example badge count
+                //tabBarBadge: 2, // Example badge count
             }}
            
         />
