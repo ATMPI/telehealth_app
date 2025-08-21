@@ -8,13 +8,10 @@ import {
   StatusBar,
 } from "react-native";
 import React from "react";
-import ThemedView from "../components/ThemedView";
 import TelehealthLogo from "../assets/images/logoTelehealth.png";
-import ThemedButton from "../components/ThemedButton";
 import { Link } from "expo-router";
-import ThemedCard from "../components/ThemedCard";
-import ThemedText from "../components/ThemedText";
-import ThemedLogo from "../components/ThemedLogo";
+import ThemedText from "../components/Theme/ThemedText";
+import ThemedLogo from "../components/Theme/ThemedLogo";
 import { useEvent } from "expo";
 import { useVideoPlayer, VideoView } from "expo-video";
 

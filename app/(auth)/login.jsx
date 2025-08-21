@@ -1,12 +1,20 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import React from "react";
-import ThemedView from "../../components/ThemedView";
-import { Link } from "expo-router";
-import ThemedText from "../../components/ThemedText";
+import ThemedView from "../../components/Theme/ThemedView";
+import { Link, useRouter } from "expo-router";
+import ThemedText from "../../components/Theme/ThemedText";
 import telehealth from "../../assets/images/telehealth-word.png";
-import ThemedTextInput from "../../components/ThemedTextInput";
-import ThemedButton from "../../components/ThemedButton";
-import ThemedBiometrics from "../../components/ThemedBiometrics";
+import ThemedTextInput from "../../components/Theme/ThemedTextInput";
+import ThemedButton from "../../components/Theme/ThemedButton";
+import ThemedBiometrics from "../../components/Theme/ThemedBiometrics";
+import AppButton from "../../components/AppButton";
 
 const Login = () => {
   const x = 1;
@@ -19,51 +27,77 @@ const Login = () => {
     // Handle blur event, e.g., log or change state
     console.log("Input blurred");
   };
+
+  const login = () => {
+    const route = useRouter();
+    route.replace("/dashboard/doctors");
+  };
   return (
-    <ThemedView
-      style={{ paddingTop: 100, flex: 1, justifyContent: "center" }}
-      safe={true}
-    >
-      <View style={{ paddingHorizontal: 20 }}>
-        <Image
-          source={telehealth}
-          style={{ resizeMode: "contain", width: "40%" }}
-        ></Image>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <ThemedView
+        style={{ paddingTop: 100, flex: 1, justifyContent: "center" }}
+        safe={true}
+      >
+        <View style={{ paddingHorizontal: 20 }}>
+          <Image
+            source={telehealth}
+            style={{ resizeMode: "contain", width: "40%" }}
+          ></Image>
 
-        <ThemedTextInput
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          placeholder="Username"
-          style={{ borderWidth: 1, padding: 10, margin: 10 }}
-        />
-        <ThemedTextInput
-          placeholder="Password"
-          secureTextEntry={true}
-          style={{ borderWidth: 1, padding: 10, margin: 10 }}
-        />
-        <ThemedButton style={{}}>
-          <Link href="/dashboard/doctors" style={styles.button}>
-            <Text style={{ color: "white" }}>Login</Text>
-          </Link>
-        </ThemedButton>
-        <View style={styles.forgotContainer}>
-          <ThemedText>Forgot</ThemedText>
-          <Link href="/forgotPassword" style={styles.link}>
-            <ThemedText link={true}>username</ThemedText>
-          </Link>
-          <ThemedText>or</ThemedText>
-          <Link href="/forgotPassword" style={styles.link}>
-            <ThemedText link={true}>password</ThemedText>
-          </Link>
+          <ThemedTextInput label="Username" keyboardType="email-address" />
+          <ThemedTextInput label="Password" secureTextEntry={true} />
+          {/* <ThemedTextInput
+            placeholder="Password"
+            secureTextEntry={true}
+            style={{ borderWidth: 1, padding: 10, margin: 10 }}
+          /> */}
+          {/* <ThemedButton style={{}}> */}
+          {/* <Link href="/dashboard/doctors" style={styles.button}>
+              <Text style={{ color: "white" }}>Login</Text>
+            </Link> */}
+          <AppButton title="Login" icon="log-in-outline" onPress={login} />
+          {/* </ThemedButton> */}
+          <View style={styles.forgotContainer}>
+            <ThemedText>Forgot</ThemedText>
+            <Link href="/forgotPassword" style={styles.link}>
+              <ThemedText link={true}>username</ThemedText>
+            </Link>
+            <ThemedText>or</ThemedText>
+            <Link href="/forgotPassword" style={styles.link}>
+              <ThemedText link={true}>password</ThemedText>
+            </Link>
+          </View>
+
+          {/* <ThemedBiometrics style={{ marginTop: 20 }}></ThemedBiometrics> */}
+          <View
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <View
+              style={{
+                width: "70%",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <AppButton
+                title="Log in with biometrics"
+                outline={true}
+                icon="finger-print"
+                style={{ marginTop: 20, paddingVertical: 15 }}
+              />
+            </View>
+          </View>
+
+          {/* <Link href="/" style={{ marginTop: 20, color: "#2ec4b6" }}>
+            Go Home
+          </Link> */}
         </View>
-
-        <ThemedBiometrics style={{ marginTop: 20 }}></ThemedBiometrics>
-
-        {/* <Link href="/" style={{ marginTop: 20, color: "#2ec4b6" }}>
-          Go Home
-        </Link> */}
-      </View>
-    </ThemedView>
+      </ThemedView>
+    </TouchableWithoutFeedback>
   );
 };
 

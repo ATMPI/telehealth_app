@@ -8,22 +8,25 @@ import {
   StatusBar,
 } from "react-native";
 import React from "react";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
-import ThemedBiometrics from "../components/ThemedBiometrics";
-import TelehealthLogo from "../assets/images/logoTelehealth.png";
-import ehealthcareLogo from "../assets/images/ehrLogo.png";
-import ThemedButton from "../components/ThemedButton";
-import ThemedCard from "../components/ThemedCard";
-import ThemedText from "../components/ThemedText";
-import ThemedLogo from "../components/ThemedLogo";
+import ThemedText from "../components/Theme/ThemedText";
+import ThemedLogo from "../components/Theme/ThemedLogo";
+import ThemedView from "../components/Theme/ThemedView";
+import AppButton from "../components/AppButton";
+
+import HalfCard from "../components/HalfCard";
 
 const Home = () => {
+  const route = useRouter();
+  const login = () => {
+    route.replace("/login");
+  };
   return (
     <ImageBackground
       style={styles.bg}
-      //   blurRadius={}
+      // blurRadius={}
       fadeDuration={1000}
       source={{
         uri: "https://images.pexels.com/photos/7195422/pexels-photo-7195422.jpeg",
@@ -42,32 +45,55 @@ const Home = () => {
         {/* <ThemedCard style={{padding:60}}> */}
         <View style={styles.logoContainer}>
           <ThemedLogo source={{}} style={[styles.image]}></ThemedLogo>
-          <ThemedText style={{ fontSize: 18, fontWeight: "bold" }}>
+          <ThemedText
+            style={{ fontSize: 18, fontWeight: "bold", color: "$fff" }}
+          >
             Consult, Anytime , Anywhere
           </ThemedText>
         </View>
 
         <View style={styles.container}>
-          <Link href="/login" style={styles.button}>
-            <Text
-              style={{
-                color: "white",
-                fontSize: 16,
-                fontFamily: "Ubuntu Bold Italic",
-                alignSelf: "center",
-              }}
-            >
-              Log in using password
-            </Text>
-          </Link>
-          <ThemedBiometrics
-            biometricStyle={{ width: "60%", justifyContent: "center" }}
-            style={[styles.button, { marginTop: 20 }]}
-          ></ThemedBiometrics>
+          <AppButton
+            title="Log in using password"
+            icon="log-in-outline"
+            onPress={login}
+          />
+          <AppButton
+            title="Log in with biometrics"
+            icon="finger-print"
+            outline={true}
+          />
         </View>
         {/* </ThemedCard> */}
       </View>
     </ImageBackground>
+  );
+};
+
+const Test = () => {
+  const route = useRouter();
+  const HandleClick = () => {
+    route.replace("/login");
+  };
+  return (
+    <View
+      style={{
+        flex: 1,
+
+        // alignSelf: "flex-end",
+      }}
+    >
+      <View
+        style={{
+          width: 100,
+          height: 100,
+          flexDirection: "row",
+
+          backgroundColor: "lightgray",
+          alignSelf: "flex-end",
+        }}
+      ></View>
+    </View>
   );
 };
 
@@ -97,6 +123,9 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
+    border: 1,
+    borderColor: "red",
+    width: "70%",
   },
   bg: {
     flex: 1,
