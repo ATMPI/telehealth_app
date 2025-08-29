@@ -28,6 +28,7 @@ const ThemedTextInput = ({ label, style, icon, ...props }) => {
       top: 7,
       left: icon ? 15 : 15,
       fontSize: 12,
+      display: icon ? "none" : "flex",
       // color: "green",
     },
     textInput: {
@@ -47,14 +48,14 @@ const ThemedTextInput = ({ label, style, icon, ...props }) => {
     icon: {
       position: "absolute",
       left: 15,
-      top: 15,
+      top: 20,
       zIndex: 2,
       color: "#888",
     },
     iconFocused: {
       top: 20,
       left: 15,
-      fontSize: 12,
+      fontSize: 16,
       // color: "green",
     },
   };

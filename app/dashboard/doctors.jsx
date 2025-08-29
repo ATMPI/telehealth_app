@@ -102,6 +102,7 @@ const List = () => {
                 }}
                 price={`PHP ${item.price}`}
                 status={item.status}
+                onPress={() => doctorDetails(item.id)}
               />
             </Card>
           </TouchableOpacity>

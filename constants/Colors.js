@@ -14,6 +14,14 @@ export const Colors = {
   //connections
   accepted: "#4CAF50",
   reject: "red",
+
+  textSecondary: "#999",
+  textWarning: "#f0ad4e",
+  textSuccess: "#5cb85c",
+  textDanger: "#d9534f",
+  textInfo: "#48a6a7",
+  textMuted: "#999",
+
   dark: {
     text: "#d4d4d4",
     title: "white",
@@ -26,8 +34,10 @@ export const Colors = {
     link: "#357ab3",
     buttonText: "#d4d4d4",
     secondary: "#2a6f97",
-    primary: "#2a6f97",
+    primary: "#48a6a7",
     seperator: "#F6F6F6",
+    textPrimary: "white",
+    underlayColor: "#014f86",
   },
   light: {
     text: "#625f72",
@@ -43,5 +53,7 @@ export const Colors = {
     secondary: "#999",
     primary: "#48a6a7",
     seperator: "#C9CDCF",
+    textPrimary: "#292b2c",
+    underlayColor: "#e6f0f6",
   },
 };

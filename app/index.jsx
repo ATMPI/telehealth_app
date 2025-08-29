@@ -15,6 +15,7 @@ import ThemedText from "../components/Theme/ThemedText";
 import ThemedLogo from "../components/Theme/ThemedLogo";
 import ThemedView from "../components/Theme/ThemedView";
 import AppButton from "../components/AppButton";
+import RatingList from "./doctor/RatingList";
 
 import HalfCard from "../components/HalfCard";
 
@@ -83,16 +84,7 @@ const Test = () => {
         // alignSelf: "flex-end",
       }}
     >
-      <View
-        style={{
-          width: 100,
-          height: 100,
-          flexDirection: "row",
-
-          backgroundColor: "lightgray",
-          alignSelf: "flex-end",
-        }}
-      ></View>
+      <RatingList />
     </View>
   );
 };

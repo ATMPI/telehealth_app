@@ -18,7 +18,7 @@ import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ThemedView from "../../components/Theme/ThemedView";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 const _DashLayout = () => {
   const safeinsets = useSafeAreaInsets();
   const colorScheme = useColorScheme();

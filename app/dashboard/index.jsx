@@ -20,6 +20,7 @@ import Categories from "../../constants/Categories";
 import { Link } from "expo-router";
 import { Colors } from "../../constants/Colors";
 import ThemedText from "../../components/Theme/ThemedText";
+import { isTablet } from "../../constants/IsTablet";
 const home = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light; // Fallback to light theme if colorScheme is undefined
@@ -35,8 +36,15 @@ const home = () => {
         <View style={styles.container}>
           <View style={styles.headerContainer}>
             <View style={styles.greetingContainer}>
-              <ThemedText style={styles.greeting}>Hello,</ThemedText>
-              <ThemedText style={styles.name}>John Doe</ThemedText>
+              <ThemedText textStyle="secondary" style={styles.greeting}>
+                Hello,
+              </ThemedText>
+              <ThemedText
+                textType="primary"
+                style={[styles.name, { color: theme.primary }]}
+              >
+                John Doe
+              </ThemedText>
             </View>
             <View style={styles.imageContainer}>
               <Image
@@ -49,9 +57,7 @@ const home = () => {
           </View>
           <ThemedTextInput label="Search" icon="search" />
           <View style={styles.appointmentsContainer}>
-            <ThemedText
-              style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}
-            >
+            <ThemedText style={{ marginBottom: 10 }}>
               Upcoming Appointments
             </ThemedText>
             <Card>
@@ -71,17 +77,9 @@ const home = () => {
                 alignItems: "center",
               }}
             >
-              <ThemedText
-                style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}
-              >
-                Categories
-              </ThemedText>
+              <ThemedText style={{ marginBottom: 10 }}>Categories</ThemedText>
               <Link href="/dashboard/categories">
-                <Text
-                  style={{ color: "Black", fontSize: 16, color: theme.link }}
-                >
-                  View All
-                </Text>
+                <ThemedText textType="link">View All</ThemedText>
               </Link>
             </View>
 
@@ -96,7 +94,7 @@ const home = () => {
               }}
             >
               <FlatList
-                data={chunkArray(Categories, 2)} // 👈 groups into 2 per column
+                data={chunkArray(Categories, isTablet() ? 7 : 2)} // 👈 groups into 2 per column
                 horizontal
                 keyExtractor={(_, index) => index.toString()}
                 showsHorizontalScrollIndicator={true}
@@ -137,11 +135,11 @@ const home = () => {
           ]}
         >
           <View style={styles.topDoctorHeader}>
-            <ThemedText style={{ fontSize: 18, fontWeight: 800 }}>
-              Top Doctors
-            </ThemedText>
+            <ThemedText>Top Doctors</ThemedText>
             <Link href="/dashboard/top-doctors">
-              <ThemedText link={true}>View All</ThemedText>
+              <ThemedText textType="link" link={true}>
+                View All
+              </ThemedText>
             </Link>
           </View>
           <Card>

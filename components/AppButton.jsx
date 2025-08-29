@@ -10,7 +10,15 @@ import { Colors } from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 // import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-const AppButton = ({ title, onPress, color, icon, style, outline = false }) => {
+const AppButton = ({
+  title,
+  onPress,
+  color,
+  icon,
+  iconSize = 24,
+  style,
+  outline = false,
+}) => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light; // Fallback to
   return (
@@ -18,7 +26,11 @@ const AppButton = ({ title, onPress, color, icon, style, outline = false }) => {
       style={[
         styles.button,
         {
-          backgroundColor: outline ? "transparent" : theme.button,
+          backgroundColor: outline
+            ? "transparent"
+            : color
+            ? color
+            : theme.button,
           borderWidth: outline ? 2 : 0,
           borderColor: outline ? theme.button : "transparent",
         },
@@ -36,18 +48,20 @@ const AppButton = ({ title, onPress, color, icon, style, outline = false }) => {
         {icon && (
           <Ionicons
             name={icon}
-            size={24}
+            size={iconSize}
             color={outline ? theme.button : theme.buttonText}
           />
         )}
-        <Text
-          style={{
-            color: outline ? theme.button : theme.buttonText,
-            marginLeft: 10,
-          }}
-        >
-          {title}
-        </Text>
+        {title && (
+          <Text
+            style={{
+              color: outline ? theme.button : theme.buttonText,
+              marginLeft: 10,
+            }}
+          >
+            {title}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );

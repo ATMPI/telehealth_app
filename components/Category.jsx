@@ -14,7 +14,9 @@ const Category = ({ title, icon, color, size, grid = false }) => {
       >
         <Image source={icon} style={styles.icon} />
       </View>
-      <ThemedText style={styles.title}>{title}</ThemedText>
+      <ThemedText textType="secondary" style={styles.title}>
+        {title}
+      </ThemedText>
     </View>
   );
 };
@@ -46,8 +48,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   title: {
-    fontSize: 14,
-    fontWeight: "bold",
+    // fontSize: 14,
+    // fontWeight: "bold",
     padding: 10,
     flexShrink: 1, // Allow the text to shrink if needed
     flexWrap: "wrap", // Enable wrapping

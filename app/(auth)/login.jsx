@@ -58,13 +58,13 @@ const Login = () => {
           <AppButton title="Login" icon="log-in-outline" onPress={login} />
           {/* </ThemedButton> */}
           <View style={styles.forgotContainer}>
-            <ThemedText>Forgot</ThemedText>
+            <ThemedText textType="primary">Forgot</ThemedText>
             <Link href="/forgotPassword" style={styles.link}>
-              <ThemedText link={true}>username</ThemedText>
+              <ThemedText textType="link">username</ThemedText>
             </Link>
-            <ThemedText>or</ThemedText>
+            <ThemedText textType="primary">or</ThemedText>
             <Link href="/forgotPassword" style={styles.link}>
-              <ThemedText link={true}>password</ThemedText>
+              <ThemedText textType="link">password</ThemedText>
             </Link>
           </View>
 
