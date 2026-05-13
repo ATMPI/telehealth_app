@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     overflow: "hidden",
     marginVertical: 10,
-    borderLeftWidth: 3,
+    // borderLeftWidth: 3,
     // borderLeftColor: "#48a6a7",
   },
 });
