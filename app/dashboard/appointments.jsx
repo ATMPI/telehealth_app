@@ -16,6 +16,7 @@ import ListView from "../../components/ListView";
 import ListItemSeperator from "../../components/ListItemSeperator";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import RightActionButton from "../../components/RightActionButton";
 
 const Appointments = () => {
   const colorScheme = useColorScheme();
@@ -38,37 +39,27 @@ const Appointments = () => {
             onPress={() => console.log("Appointment pressed")}
             renderRightActions={() => (
               <>
-                <View
+                <RightActionButton
                   style={{
                     backgroundColor: Colors.completed,
                     width: 70,
                   }}
-                >
-                  <Ionicons
-                    name="enter-outline"
-                    size={30}
-                    color="#fff"
-                    style={{ alignSelf: "center", marginTop: 30 }}
-                  />
-                </View>
-                <View
+                  icon="enter-outline"
+                  iconColor="#fff"
+                />
+                <RightActionButton
                   style={{
                     backgroundColor: "orange",
                     width: 70,
                   }}
-                >
-                  <Ionicons
-                    name="pencil"
-                    size={30}
-                    color="#fff"
-                    style={{ alignSelf: "center", marginTop: 30 }}
-                  />
-                </View>
+                  icon="pencil"
+                  iconColor="#fff"
+                />
               </>
             )}
           />
         )}
-        ItemSeparatorComponent={<ListItemSeperator />}
+        ItemSeparatorComponent={ListItemSeperator}
       />
     </ThemedView>
   );

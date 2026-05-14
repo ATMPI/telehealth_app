@@ -54,6 +54,6 @@ export const Colors = {
     primary: "#48a6a7",
     seperator: "#C9CDCF",
     textPrimary: "#292b2c",
-    underlayColor: "#e6f0f6",
+    underlayColor: "#D3D3D3",
   },
 };

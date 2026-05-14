@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <ImageBackground
       style={styles.bg}
-      // blurRadius={}
+      // blurRadius={2}
       fadeDuration={1000}
       source={{
         uri: "https://images.pexels.com/photos/7195422/pexels-photo-7195422.jpeg",

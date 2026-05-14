@@ -33,7 +33,7 @@ const ListView = ({
     //     { backgroundColor: theme.uiBackground, borderLeftColor: theme.button },
     //   ]} // Use the theme's background color
     // >
-    <Swipeable overshootRight={true} renderRightActions={renderRightActions}>
+    <Swipeable overshootRight={false} renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={theme.underlayColor} onPress={onPress}>
         <View style={styles.container}>
           {avatar && <Image source={{ uri: avatar }} style={styles.avatar} />}

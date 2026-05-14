@@ -14,18 +14,19 @@ import ThemedText from "../../components/Theme/ThemedText";
 import AppButton from "../../components/AppButton";
 import Rating from "../../components/Rating";
 import { isTablet } from "../../constants/IsTablet";
+import { DoctorList } from "../../constants/Doctors";
 
 const DoctorDetails = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
   const { id } = useLocalSearchParams();
   const route = useRouter();
+  const selectedDoctor = DoctorList.find((doc) => doc.id === id);
+  console.log(selectedDoctor.name);
+
   return (
     <ThemedView safe={true} style={styles.mainContainer}>
-      <Image
-        source={require("../../assets/images/cover.jpg")}
-        style={styles.cover}
-      />
+      <Image source={{ uri: selectedDoctor.avatar }} style={styles.cover} />
 
       <ThemedView
         style={[styles.content, { backgroundColor: theme.background }]}
@@ -34,9 +35,11 @@ const DoctorDetails = () => {
           <View style={[styles.row]}>
             <View style={styles.personalInfo}>
               <ThemedText textType="primary" style={{ fontSize: 24 }}>
-                Dr. Ivan Smith
+                {selectedDoctor.name}
               </ThemedText>
-              <ThemedText textType="secondary">Cardiologist</ThemedText>
+              <ThemedText textType="secondary">
+                {selectedDoctor.specification}
+              </ThemedText>
             </View>
             <View
               style={[
@@ -219,7 +222,7 @@ const styles = StyleSheet.create({
   cover: {
     // flex: 1,
     width: "100%",
-    height: "40%",
+    height: "33%",
     backgroundColor: "#ccc",
     zIndex: 1,
     resizeMode: "cover",

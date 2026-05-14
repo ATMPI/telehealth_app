@@ -11,6 +11,7 @@ import {
   Pressable,
   TouchableOpacity,
   FlatList,
+  TouchableHighlight,
 } from "react-native";
 import React from "react";
 import ThemedView from "../../components/Theme/ThemedView";
@@ -42,7 +43,7 @@ const Doctors = () => {
             },
           ]}
         >
-          <TouchableOpacity
+          <TouchableHighlight
             onPress={() => route.push(`../doctor/${doctor.id}`)}
           >
             <Image
@@ -59,7 +60,7 @@ const Doctors = () => {
               navigation bar and a grey content area containing your HomeScreen
               component (shown above).
             </ThemedText>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </ThemedCard>
       </View>
     );
