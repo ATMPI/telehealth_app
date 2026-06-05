@@ -22,6 +22,7 @@ import { Colors } from "../../constants/Colors";
 import { useRouter } from "expo-router";
 import ListView from "../../components/ListView";
 import Card from "../../components/Card";
+import { useState } from "react";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -79,6 +80,8 @@ const List = () => {
   const route = useRouter();
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light;
+  const [doctors, setDoctors] = useState(DoctorList);
+  const [refresh, setRefresh] = useState(false);
 
   const doctorDetails = (id) => {
     route.push(`../doctor/${id}`);
@@ -87,7 +90,7 @@ const List = () => {
     <ThemedView safe={false} style={ListStyle.container}>
       <FlatList
         style={{ paddingHorizontal: 10 }}
-        data={DoctorList}
+        data={doctors}
         keyExtractor={(doctor) => doctor.id.toString()}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => doctorDetails(item.id)}>
@@ -108,6 +111,10 @@ const List = () => {
             </Card>
           </TouchableOpacity>
         )}
+        refreshing={refresh}
+        onRefresh={() => {
+          setDoctors((doc) => doc.filter((doc) => doc.id !== "D1001"));
+        }}
       />
     </ThemedView>
   );

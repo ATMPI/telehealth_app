@@ -37,7 +37,7 @@ const DoctorDetails = () => {
               <ThemedText textType="primary" style={{ fontSize: 24 }}>
                 {selectedDoctor.name}
               </ThemedText>
-              <ThemedText textType="secondary">
+              <ThemedText textType="secondary" style={styles.specification}>
                 {selectedDoctor.specification}
               </ThemedText>
             </View>

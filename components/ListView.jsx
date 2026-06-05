@@ -22,6 +22,7 @@ const ListView = ({
   price,
   onPress,
   renderRightActions,
+  IconComponent,
 }) => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light; // Fallback to light theme if colorScheme is undefined
@@ -35,20 +36,23 @@ const ListView = ({
     // >
     <Swipeable overshootRight={false} renderRightActions={renderRightActions}>
       <TouchableHighlight underlayColor={theme.underlayColor} onPress={onPress}>
-        <View style={styles.container}>
+        <View style={[styles.container, style]}>
+          {IconComponent}
           {avatar && <Image source={{ uri: avatar }} style={styles.avatar} />}
           <View style={styles.details}>
-            <View>
+            <View style={styles.detailsContainer}>
               <ThemedText style={[styles.name, { color: theme.primary }]}>
                 {name}
               </ThemedText>
-              <ThemedText
-                textType="primary"
-                numberOfLines={2}
-                style={[styles.title]}
-              >
-                {title}
-              </ThemedText>
+              {title && (
+                <ThemedText
+                  textType="primary"
+                  numberOfLines={2}
+                  style={[styles.title]}
+                >
+                  {title}
+                </ThemedText>
+              )}
             </View>
             {details &&
               ["detail1", "detail2"].map(
@@ -87,6 +91,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
   },
   avatar: {
     width: 80,
@@ -99,6 +105,10 @@ const styles = StyleSheet.create({
     padding: 10,
     // justifyContent: "center",
     justifyContent: "space-evenly",
+  },
+  detailsContainer: {
+    justifyContent: "center",
+    alignContent: "center",
   },
   name: {
     fontSize: 18,

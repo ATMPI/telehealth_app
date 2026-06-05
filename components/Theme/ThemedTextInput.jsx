@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useColorScheme } from "react-native";
 import { StyleSheet, TextInput, View, Text } from "react-native";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-const ThemedTextInput = ({ label, style, icon, ...props }) => {
+const ThemedTextInput = ({
+  label,
+  style,
+  icon,
+  onBlur,
+  onFocus,
+  onChangeText,
+  value,
+  ...props
+}) => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light; // Fallback to light theme
   const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState("");
+  const [internalValue, setInternalValue] = useState(value);
 
   const styles = {
     container: {
@@ -26,7 +35,7 @@ const ThemedTextInput = ({ label, style, icon, ...props }) => {
     },
     labelFocused: {
       top: 7,
-      left: icon ? 15 : 15,
+      left: 15,
       fontSize: 12,
       display: icon ? "none" : "flex",
       // color: "green",
@@ -60,13 +69,44 @@ const ThemedTextInput = ({ label, style, icon, ...props }) => {
     },
   };
 
+  const handleFocus = useCallback(
+    (e) => {
+      setIsFocused(true);
+      if (onFocus) {
+        onFocus(e);
+      }
+    },
+    [onFocus]
+  );
+
+  const handleBlur = useCallback(
+    (e) => {
+      setIsFocused(false);
+      if (onBlur) {
+        onBlur(e);
+      }
+    },
+    [onBlur]
+  );
+
+  const handleOnChangeText = useCallback(
+    (e) => {
+      setInternalValue(e);
+
+      if (onChangeText) {
+        onChangeText(e);
+      }
+    },
+    [onChangeText]
+  );
+
   return (
     <View style={[styles.container, style]}>
       {/* Label */}
       <Text
         style={[
           styles.label,
-          (isFocused || value) && styles.labelFocused, // Move label when focused or has text
+          isFocused || internalValue ? styles.labelFocused : styles.label, // Move label when focused or has text
         ]}
       >
         {label}
@@ -77,16 +117,20 @@ const ThemedTextInput = ({ label, style, icon, ...props }) => {
         {icon && (
           <Ionicons
             name={icon}
-            style={[styles.icon, (isFocused || value) && styles.iconFocused]}
+            style={[
+              styles.icon,
+              (isFocused || internalValue) && styles.iconFocused,
+            ]}
             size={16}
           />
         )}
         <TextInput
           style={[styles.textInput, isFocused && styles.inputFocused]}
-          value={value}
-          onChangeText={setValue}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          value={internalValue}
+          onChangeText={handleOnChangeText}
+          // onChangeText={(value) => setValue(value)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           {...props}
         />
       </View>

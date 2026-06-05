@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   TextInput,
@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Animated,
   Pressable,
-} from 'react-native';
+  Keyboard,
+} from "react-native";
 
 export default function FloatingInput({ label, value, onChangeText }) {
   const [isFocused, setIsFocused] = useState(false);
@@ -33,7 +34,7 @@ export default function FloatingInput({ label, value, onChangeText }) {
   };
 
   const labelStyle = {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     top: animatedLabel.interpolate({
       inputRange: [0, 1],
@@ -43,7 +44,7 @@ export default function FloatingInput({ label, value, onChangeText }) {
       inputRange: [0, 1],
       outputRange: [16, 12],
     }),
-    color: isFocused ? '#1e90ff' : '#aaa',
+    color: isFocused ? "#1e90ff" : "#aaa",
   };
 
   return (
@@ -53,7 +54,7 @@ export default function FloatingInput({ label, value, onChangeText }) {
         style={[
           styles.input,
           {
-            borderBottomColor: isFocused ? '#1e90ff' : '#ccc',
+            borderBottomColor: isFocused ? "#1e90ff" : "#ccc",
             borderBottomWidth: 2,
           },
         ]}
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     fontSize: 16,
-    color: '#212529',
+    color: "#212529",
     borderBottomWidth: 2,
   },
 });

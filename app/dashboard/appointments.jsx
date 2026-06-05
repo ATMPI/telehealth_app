@@ -11,25 +11,28 @@ import React from "react";
 import ThemedView from "../../components/Theme/ThemedView";
 
 import { AppointmentLists } from "../../constants/Appointments";
-
+import { DoctorList } from "../../constants/Doctors";
 import ListView from "../../components/ListView";
 import ListItemSeperator from "../../components/ListItemSeperator";
 import { Colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import RightActionButton from "../../components/RightActionButton";
+import { useState } from "react";
 
 const Appointments = () => {
   const colorScheme = useColorScheme();
   const theme = Colors[colorScheme] ?? Colors.light; // Fallback to light theme if colorScheme is undefined
+  const [appointments, setAppointments] = useState(AppointmentLists);
+  const [doctors, setDoctors] = useState(DoctorList);
+  const [refresh, setRefresh] = useState(false);
   return (
     <ThemedView safe={false} style={ListStyle.container}>
       <FlatList
         style={{ paddingHorizontal: 10 }}
-        data={AppointmentLists}
-        keyExtractor={(doctor) => doctor.id.toString()}
+        data={appointments}
+        keyExtractor={(appointment) => appointment.id.toString()}
         renderItem={({ item }) => (
           <ListView
-            avatar={item.avatar}
             name={item.name}
             title={`MD - ${item.specification}`}
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
@@ -60,6 +63,18 @@ const Appointments = () => {
           />
         )}
         ItemSeparatorComponent={ListItemSeperator}
+        refreshing={refresh}
+        onRefresh={() => {
+          setRefresh(true);
+          const updatedAppointments = appointments.map((appointment) => {
+            const doctor = doctors.find((doc) => doc.id === appointment.id);
+            return doctor
+              ? { ...appointment, avatar: doctor.avatar }
+              : appointment;
+          });
+          setRefresh(false);
+          setAppointments(updatedAppointments);
+        }}
       />
     </ThemedView>
   );

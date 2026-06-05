@@ -13,6 +13,7 @@ import { ConnectionLists } from "../../constants/Connection";
 import ListView from "../../components/ListView";
 import ListItemSeperator from "../../components/ListItemSeperator";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import Icon from "../../components/Icon";
 
 const Connections = () => {
   const tabBarHeight = useBottomTabBarHeight();
@@ -37,10 +38,11 @@ const Connections = () => {
           keyExtractor={(patient) => patient.id.toString()}
           renderItem={({ item }) => (
             <ListView
-              avatar={item.avatar}
               name={item.name}
               title={item.id}
               status={item.status}
+              IconComponent={<Icon name="person-outline"></Icon>}
+              style={{ paddingVertical: 10 }}
             />
           )}
           ItemSeparatorComponent={<ListItemSeperator />}
